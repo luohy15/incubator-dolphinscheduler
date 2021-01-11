@@ -108,7 +108,8 @@ public class ResInfo {
         masterServer.setCreateTime(DateUtils.stringToDate(masterArray[6]));
         masterServer.setLastHeartbeatTime(DateUtils.stringToDate(masterArray[7]));
         //set process id
-        masterServer.setId(Integer.parseInt(masterArray[9]));
+        masterServer.setProcessId(Integer.parseInt(masterArray[9]));
+        masterServer.setServerId(Integer.parseInt(masterArray[10]));
         return masterServer;
     }
 

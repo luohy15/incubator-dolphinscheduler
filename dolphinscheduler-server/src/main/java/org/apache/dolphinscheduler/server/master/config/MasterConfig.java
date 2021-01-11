@@ -55,6 +55,9 @@ public class MasterConfig {
     @Value("${master.listen.port:5678}")
     private int listenPort;
 
+    @Value("${master.id:-1}")
+    private int id;
+
     public int getListenPort() {
         return listenPort;
     }
@@ -136,5 +139,13 @@ public class MasterConfig {
 
     public void setMasterDispatchTaskNumber(int masterDispatchTaskNumber) {
         this.masterDispatchTaskNumber = masterDispatchTaskNumber;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

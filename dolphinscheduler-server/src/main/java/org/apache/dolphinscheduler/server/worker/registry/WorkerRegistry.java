@@ -119,7 +119,8 @@ public class WorkerRegistry {
             this.workerConfig.getWorkerReservedMemory(),
             this.workerConfig.getWorkerMaxCpuloadAvg(),
             workerZkPaths,
-            this.zookeeperRegistryCenter);
+            this.zookeeperRegistryCenter,
+            workerConfig.getId());
 
         this.heartBeatExecutor.scheduleAtFixedRate(heartBeatTask, workerHeartbeatInterval, workerHeartbeatInterval, TimeUnit.SECONDS);
         logger.info("worker node : {} heartbeat interval {} s", address, workerHeartbeatInterval);

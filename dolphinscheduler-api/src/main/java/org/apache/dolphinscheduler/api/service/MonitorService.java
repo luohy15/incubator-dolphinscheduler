@@ -116,7 +116,8 @@ public class MonitorService extends BaseService {
             .stream()
             .map((Server server) -> {
               WorkerServerModel model = new WorkerServerModel();
-              model.setId(server.getId());
+              model.setProcessId(server.getProcessId());
+              model.setServerId(server.getServerId());
               model.setHost(server.getHost());
               model.setPort(server.getPort());
               model.setZkDirectories(Sets.newHashSet(server.getZkDirectory()));

@@ -103,7 +103,8 @@ public class MasterRegistry {
                 masterConfig.getMasterReservedMemory(),
                 masterConfig.getMasterMaxCpuloadAvg(),
                 Sets.newHashSet(getMasterPath()),
-                zookeeperRegistryCenter);
+                zookeeperRegistryCenter,
+                masterConfig.getId());
 
         this.heartBeatExecutor.scheduleAtFixedRate(heartBeatTask, 0, masterHeartbeatInterval, TimeUnit.SECONDS);
         logger.info("master node : {} registry to ZK path {} successfully with heartBeatInterval : {}s"

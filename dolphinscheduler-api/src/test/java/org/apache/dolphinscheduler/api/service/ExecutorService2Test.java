@@ -275,13 +275,13 @@ public class ExecutorService2Test {
     private List<Server> getMasterServersList() {
         List<Server> masterServerList = new ArrayList<>();
         Server masterServer1 = new Server();
-        masterServer1.setId(1);
+        masterServer1.setProcessId(1);
         masterServer1.setHost("192.168.220.188");
         masterServer1.setPort(1121);
         masterServerList.add(masterServer1);
 
         Server masterServer2 = new Server();
-        masterServer2.setId(2);
+        masterServer2.setProcessId(2);
         masterServer2.setHost("192.168.220.189");
         masterServer2.setPort(1122);
         masterServerList.add(masterServer2);

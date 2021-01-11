@@ -21,6 +21,7 @@
         <div class="row-box" v-for="(item,$index) in masterList" :key="$index">
           <div class="row-title">
             <div class="left">
+              <span class="sp">ID: {{item.serverId == -1 ? '未指定' : item.serverId}}</span>
               <span class="sp">IP: {{item.host}}</span>
               <span class="sp">{{$t('Zk registration directory')}}: {{item.zkDirectory}}</span>
             </div>
@@ -94,7 +95,7 @@
       this.getMasterData().then(res => {
         this.masterList = _.map(res, (v, i) => {
           return _.assign(v, {
-            id: v.host + '_' + v.id,
+            id: v.host + '_' + v.processId,
             resInfo: JSON.parse(v.resInfo)
           })
         })

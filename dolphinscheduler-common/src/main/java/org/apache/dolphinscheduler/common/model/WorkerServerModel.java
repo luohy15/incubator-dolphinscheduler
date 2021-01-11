@@ -28,9 +28,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class WorkerServerModel {
 
     /**
-     * id
+     * processId
      */
-    private int id;
+    private int processId;
+
+    /**
+     * serverId
+     */
+    private int serverId;
 
     /**
      * host
@@ -64,12 +69,20 @@ public class WorkerServerModel {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date lastHeartbeatTime;
 
-    public int getId() {
-        return id;
+    public int getProcessId() {
+        return processId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProcessId(int processId) {
+        this.processId = processId;
+    }
+
+    public int getServerId() {
+        return serverId;
+    }
+
+    public void setServerId(int workerId) {
+        this.serverId = workerId;
     }
 
     public Date getCreateTime() {

@@ -27,9 +27,14 @@ import java.util.Date;
 public class Server {
 
     /**
-     * id
+     * processId
      */
-    private int id;
+    private int processId;
+
+    /**
+     * serverId
+     */
+    private int serverId;
 
     /**
      * host
@@ -63,12 +68,20 @@ public class Server {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date lastHeartbeatTime;
 
-    public int getId() {
-        return id;
+    public int getProcessId() {
+        return processId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProcessId(int processId) {
+        this.processId = processId;
+    }
+
+    public int getServerId() {
+        return serverId;
+    }
+
+    public void setServerId(int serverId) {
+        this.serverId = serverId;
     }
 
     public String getHost() {
@@ -122,7 +135,8 @@ public class Server {
     @Override
     public String toString() {
         return "MasterServer{" +
-                "id=" + id +
+                "processId=" + processId +
+                ", serverId=" + serverId +
                 ", host='" + host + '\'' +
                 ", port=" + port +
                 ", zkDirectory='" + zkDirectory + '\'' +

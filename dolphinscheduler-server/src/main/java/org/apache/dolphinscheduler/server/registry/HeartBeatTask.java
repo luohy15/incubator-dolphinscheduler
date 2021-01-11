@@ -32,6 +32,7 @@ public class HeartBeatTask extends Thread {
 
     private final Logger logger = LoggerFactory.getLogger(HeartBeatTask.class);
 
+    private int serverId;
     private String startTime;
     private double reservedMemory;
     private double maxCpuloadAvg;
@@ -42,12 +43,14 @@ public class HeartBeatTask extends Thread {
                          double reservedMemory,
                          double maxCpuloadAvg,
                          Set<String> heartBeatPaths,
-                         ZookeeperRegistryCenter zookeeperRegistryCenter) {
+                         ZookeeperRegistryCenter zookeeperRegistryCenter,
+                         int serverId) {
         this.startTime = startTime;
         this.reservedMemory = reservedMemory;
         this.maxCpuloadAvg = maxCpuloadAvg;
         this.heartBeatPaths = heartBeatPaths;
         this.zookeeperRegistryCenter = zookeeperRegistryCenter;
+        this.serverId = serverId;
     }
 
     @Override
@@ -76,6 +79,7 @@ public class HeartBeatTask extends Thread {
             builder.append(status).append(COMMA);
             //save process id
             builder.append(OSUtils.getProcessID());
+            builder.append(COMMA).append(serverId);
 
             for (String heartBeatPath : heartBeatPaths) {
                 zookeeperRegistryCenter.getZookeeperCachedOperator().update(heartBeatPath, builder.toString());
