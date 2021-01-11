@@ -55,7 +55,7 @@ public class MasterConfig {
     @Value("${master.listen.port:5678}")
     private int listenPort;
 
-    @Value("${master.id:-1}")
+    @Value("${master.id:0}")
     private int id;
 
     public int getListenPort() {

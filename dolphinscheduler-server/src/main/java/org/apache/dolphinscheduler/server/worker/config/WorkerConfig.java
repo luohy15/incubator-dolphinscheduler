@@ -52,7 +52,7 @@ public class WorkerConfig {
     @Value("${worker.weight:100}")
     private int weight;
     
-    @Value("${worker.id:-1}")
+    @Value("${worker.id:0}")
     private int id;
 
     public int getListenPort() {

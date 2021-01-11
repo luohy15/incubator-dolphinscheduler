@@ -16,11 +16,16 @@
  */
 package org.apache.dolphinscheduler.api.service.impl;
 
+import static org.apache.dolphinscheduler.common.utils.Preconditions.checkNotNull;
+
 import org.apache.dolphinscheduler.api.enums.Status;
 import org.apache.dolphinscheduler.api.exceptions.ServiceException;
 import org.apache.dolphinscheduler.api.service.LoggerService;
 import org.apache.dolphinscheduler.api.utils.Result;
+import org.apache.dolphinscheduler.api.utils.ZookeeperMonitor;
 import org.apache.dolphinscheduler.common.Constants;
+import org.apache.dolphinscheduler.common.enums.ZKNodeType;
+import org.apache.dolphinscheduler.common.model.Server;
 import org.apache.dolphinscheduler.common.utils.StringUtils;
 import org.apache.dolphinscheduler.dao.entity.TaskInstance;
 import org.apache.dolphinscheduler.remote.utils.Host;
@@ -30,6 +35,7 @@ import org.apache.dolphinscheduler.service.process.ProcessService;
 import org.apache.commons.lang.ArrayUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
@@ -54,6 +60,9 @@ public class LoggerServiceImpl implements LoggerService {
     private ProcessService processService;
 
     private LogClientService logClient;
+
+    @Autowired
+    private ZookeeperMonitor zookeeperMonitor;
 
     @PostConstruct
     public void init() {
@@ -87,6 +96,12 @@ public class LoggerServiceImpl implements LoggerService {
         }
 
         String host = getHost(taskInstance.getHost());
+        if (taskInstance.getWorkerId() > 0) {
+            host = getHostByWorkerId(taskInstance.getWorkerId());
+            if (host.equals("")) {
+                return new Result<>(Status.QUERY_TASK_INSTANCE_LOG_ERROR.getCode(), Status.QUERY_TASK_INSTANCE_LOG_ERROR.getMsg());
+            }
+        }
 
         Result<String> result = new Result<>(Status.SUCCESS.getCode(), Status.SUCCESS.getMsg());
 
@@ -141,5 +156,22 @@ public class LoggerServiceImpl implements LoggerService {
             return address;
         }
         return Host.of(address).getIp();
+    }
+
+    /**
+     * get host
+     *
+     * @param workerId workerId
+     * @return host ip
+     */
+    private String getHostByWorkerId(int workerId) {
+        checkNotNull(zookeeperMonitor);
+        List<Server> serverList = zookeeperMonitor.getServersList(ZKNodeType.WORKER);
+        for (Server server : serverList) {
+            if (server.getServerId() == workerId) {
+                return server.getHost();
+            }
+        }
+        return "";
     }
 }
