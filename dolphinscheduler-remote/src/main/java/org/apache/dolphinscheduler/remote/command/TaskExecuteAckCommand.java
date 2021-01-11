@@ -46,6 +46,11 @@ public class TaskExecuteAckCommand implements Serializable {
     private String host;
 
     /**
+     * workerId
+     */
+    private int workerId;
+
+    /**
      * status
      */
     private int status;
@@ -74,6 +79,14 @@ public class TaskExecuteAckCommand implements Serializable {
 
     public void setHost(String host) {
         this.host = host;
+    }
+
+    public int getWorkerId() {
+        return workerId;
+    }
+
+    public void setWorkerId(int workerId) {
+        this.workerId = workerId;
     }
 
     public int getStatus() {

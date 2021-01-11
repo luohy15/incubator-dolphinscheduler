@@ -125,6 +125,7 @@ public class TaskExecuteProcessor implements NettyRequestProcessor {
             taskExecutionContext.getTaskInstanceId()));
 
         taskExecutionContext.setHost(NetUtils.getHost() + ":" + workerConfig.getListenPort());
+        taskExecutionContext.setWorkerId(workerConfig.getId());
         taskExecutionContext.setStartTime(new Date());
         taskExecutionContext.setLogPath(LogUtils.getTaskLogPath(taskExecutionContext));
         taskExecutionContext.setCurrentExecutionStatus(ExecutionStatus.RUNNING_EXECUTION);
@@ -172,6 +173,7 @@ public class TaskExecuteProcessor implements NettyRequestProcessor {
         ackCommand.setStatus(taskExecutionContext.getCurrentExecutionStatus().getCode());
         ackCommand.setLogPath(LogUtils.getTaskLogPath(taskExecutionContext));
         ackCommand.setHost(taskExecutionContext.getHost());
+        ackCommand.setWorkerId(taskExecutionContext.getWorkerId());
         ackCommand.setStartTime(taskExecutionContext.getStartTime());
         if (taskExecutionContext.getTaskType().equals(TaskType.SQL.name()) || taskExecutionContext.getTaskType().equals(TaskType.PROCEDURE.name())) {
             ackCommand.setExecutePath(null);

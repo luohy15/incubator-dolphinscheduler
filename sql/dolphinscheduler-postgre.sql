@@ -593,6 +593,7 @@ CREATE TABLE t_ds_task_instance (
   max_retry_times int DEFAULT NULL ,
   task_instance_priority int DEFAULT NULL ,
   worker_group varchar(64),
+  worker_id int DEFAULT NULL ,
   executor_id int DEFAULT NULL ,
   first_submit_time timestamp DEFAULT NULL ,
   delay_time int DEFAULT '0' ,

@@ -79,6 +79,7 @@ public class TaskAckProcessor implements NettyRequestProcessor {
         TaskResponseEvent taskResponseEvent = TaskResponseEvent.newAck(ackStatus,
                 taskAckCommand.getStartTime(),
                 workerAddress,
+                taskAckCommand.getWorkerId(),
                 taskAckCommand.getExecutePath(),
                 taskAckCommand.getLogPath(),
                 taskAckCommand.getTaskInstanceId(),

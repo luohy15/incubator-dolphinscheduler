@@ -66,6 +66,11 @@ public class TaskExecutionContext implements Serializable {
     private String host;
 
     /**
+     * workerId
+     */
+    private int workerId;
+    
+    /**
      * task execute path
      */
     private String executePath;
@@ -334,6 +339,14 @@ public class TaskExecutionContext implements Serializable {
 
     public void setExecutorId(int executorId) {
         this.executorId = executorId;
+    }
+
+    public int getWorkerId() {
+        return workerId;
+    }
+
+    public void setWorkerId(int workerId) {
+        this.workerId = workerId;
     }
 
     public int getCmdTypeIfComplement() {

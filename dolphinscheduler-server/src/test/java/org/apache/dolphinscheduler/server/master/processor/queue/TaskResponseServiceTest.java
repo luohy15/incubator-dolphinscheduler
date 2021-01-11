@@ -59,6 +59,7 @@ public class TaskResponseServiceTest {
         ackEvent = TaskResponseEvent.newAck(ExecutionStatus.RUNNING_EXECUTION,
             new Date(),
             "127.*.*.*",
+            0,
             "path",
             "logPath",
             22,

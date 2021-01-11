@@ -215,7 +215,12 @@ public class TaskInstance implements Serializable {
      * varPool string
      */
     private String varPool;
-    
+
+    /**
+     * worker id
+     */
+    private int workerId;
+
     /**
      * executor name
      */
@@ -469,6 +474,14 @@ public class TaskInstance implements Serializable {
         this.executorId = executorId;
     }
 
+    public int getWorkerId() {
+        return workerId;
+    }
+
+    public void setWorkerId(int workerId) {
+        this.workerId = workerId;
+    }
+
     public String getExecutorName() {
         return executorName;
     }
@@ -596,6 +609,7 @@ public class TaskInstance implements Serializable {
                 + ", processInstancePriority=" + processInstancePriority
                 + ", dependentResult='" + dependentResult + '\''
                 + ", workerGroup='" + workerGroup + '\''
+                + ", workerId='" + workerId + '\''
                 + ", executorId=" + executorId
                 + ", executorName='" + executorName + '\''
                 + ", delayTime=" + delayTime

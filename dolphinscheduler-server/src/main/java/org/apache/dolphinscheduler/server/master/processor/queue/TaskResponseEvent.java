@@ -42,6 +42,11 @@ public class TaskResponseEvent {
     private String workerAddress;
 
     /**
+     * workerId
+     */
+    private int workerId;
+
+    /**
      * state
      */
     private ExecutionStatus state;
@@ -96,6 +101,7 @@ public class TaskResponseEvent {
     public static TaskResponseEvent newAck(ExecutionStatus state,
                                            Date startTime,
                                            String workerAddress,
+                                           int workerId,
                                            String executePath,
                                            String logPath,
                                            int taskInstanceId,
@@ -104,6 +110,7 @@ public class TaskResponseEvent {
         event.setState(state);
         event.setStartTime(startTime);
         event.setWorkerAddress(workerAddress);
+        event.setWorkerId(workerId);
         event.setExecutePath(executePath);
         event.setLogPath(logPath);
         event.setTaskInstanceId(taskInstanceId);
@@ -153,6 +160,14 @@ public class TaskResponseEvent {
 
     public void setWorkerAddress(String workerAddress) {
         this.workerAddress = workerAddress;
+    }
+
+    public int getWorkerId() {
+        return workerId;
+    }
+
+    public void setWorkerId(int workerId) {
+        this.workerId = workerId;
     }
 
     public ExecutionStatus getState() {

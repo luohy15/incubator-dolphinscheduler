@@ -213,6 +213,7 @@ public class TaskPriorityQueueConsumer extends Thread {
             processService.changeTaskState(taskInstance, ExecutionStatus.FAILURE,
                 taskInstance.getStartTime(),
                 taskInstance.getHost(),
+                -1,
                 null,
                 null,
                 taskInstance.getId());

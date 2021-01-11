@@ -1467,17 +1467,20 @@ public class ProcessService {
      * @param state       state
      * @param startTime   startTime
      * @param host        host
+     * @param workerId    workerId
      * @param executePath executePath
      * @param logPath     logPath
      * @param taskInstId  taskInstId
      */
     public void changeTaskState(TaskInstance taskInstance, ExecutionStatus state, Date startTime, String host,
+                                int workerId,
                                 String executePath,
                                 String logPath,
                                 int taskInstId) {
         taskInstance.setState(state);
         taskInstance.setStartTime(startTime);
         taskInstance.setHost(host);
+        taskInstance.setWorkerId(workerId);
         taskInstance.setExecutePath(executePath);
         taskInstance.setLogPath(logPath);
         saveTaskInstance(taskInstance);

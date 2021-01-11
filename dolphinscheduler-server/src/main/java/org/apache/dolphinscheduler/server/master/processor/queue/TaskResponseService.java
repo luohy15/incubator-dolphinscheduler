@@ -143,6 +143,7 @@ public class TaskResponseService {
                         processService.changeTaskState(taskInstance, status,
                             taskResponseEvent.getStartTime(),
                             taskResponseEvent.getWorkerAddress(),
+                            taskResponseEvent.getWorkerId(),
                             taskResponseEvent.getExecutePath(),
                             taskResponseEvent.getLogPath(),
                             taskResponseEvent.getTaskInstanceId());
